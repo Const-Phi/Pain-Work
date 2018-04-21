@@ -1,4 +1,5 @@
 using System;
+using static Algebra.Inputs;
 
 namespace Algebra
 {
@@ -38,6 +39,13 @@ namespace Algebra
         {
             Degree = degree;
             Factor = factor;
+        }
+         
+        public static Monome Read()
+        {
+           var factor = Input("Введите множитель");
+           var degree = (int)Input("Введите степень");
+           return new Monome(factor, degree);
         }
 
         /// <summary>
