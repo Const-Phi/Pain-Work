@@ -59,10 +59,50 @@ namespace Algebra
         /// <returns></returns>
         public static implicit operator Monome(double value) => new Monome(value);
         
-        public static Monome operator +(Monome arg1, Monome arg2)
-        {
-            return new Monome();
-        }
+        #region Operators
+        
+        public static Monome operator +(Monome arg1, Monome arg2) =>
+            arg1.degree == arg2.degree ? 
+                new Monome(arg1.factor + arg2.factor, arg1.degree) : 0; //что тут вставлять хрен его знает 
+        
+        public static Monome operator +(Monome arg1, double arg2) =>
+            new Monome(arg1.factor + arg2, arg1.degree);
+
+        public static Monome operator +(double arg1, Monome arg2) => 
+            arg2 + arg1;
+        
+        public static Monome operator -(Monome arg1, Monome arg2) =>
+            arg1.degree == arg2.degree ?
+                new Monome(arg1.factor - arg2.factor, arg1.degree) : 0;
+        
+        public static Monome operator -(Monome arg1, double arg2) =>
+            new Monome(arg1.factor - arg2, arg1.degree);
+
+        public static Monome operator -(double arg1, Monome arg2) => 
+            arg2 - arg1;
+        
+        public static Monome operator *(Monome arg1, Monome arg2) =>
+             new Monome(arg1.factor * arg2.factor, arg1.degree + arg1.degree);
+        
+        public static Monome operator *(Monome arg1, double arg2) =>
+             new Monome(arg1.factor * arg2, arg1.degree);
+
+        public static Monome operator *(double arg1, Monome arg2) =>
+            arg2 * arg1;
+        
+        public static Monome operator /(Monome arg1, Monome arg2) =>
+            new Monome(arg1.factor / arg2.factor, arg1.degree - arg2.degree);
+
+        public static Monome operator /(Monome arg1, double arg2) =>
+            new Monome(arg1.factor / arg2, arg1.degree);
+        
+        public static Monome operator /(double arg1, Monome arg2) =>
+            new Monome(arg1 / arg2.factor, arg2.degree * (-1)); //0 - arg2.degree         
+        
+        public static Monome operator ^(Monome arg1, double arg2) =>
+            new Monome(arg1.factor, (int)(arg1.degree * arg2));
+        
+        #endregion
         
     }
 }
