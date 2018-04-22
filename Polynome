@@ -39,5 +39,20 @@ namespace Algebra
         }
         
         //я вообще не знаю кто писал это в 4 утра О_о
+        
+
+        public sealed class Comparer : IComparer<Monome>
+        {
+            public int Compare(Monome x, Monome y) =>
+               x.Degree.CompareTo(y.Degree);
+        }
+        
+        public class Formattable : IFormattable
+        {
+            public string ToString(string format, IFormatProvider formatProvider)
+            {
+                //вакханалия
+            }
+        }
     }
 }
