@@ -1,0 +1,43 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Algebra
+{
+    public class Polynome : IEnumerable<Monome>
+    {
+        public Polynome(IEnumerable<Monome> monomes)
+        {
+            //какая-то вакханалия
+        }
+
+        public Polynome(params Monome[] monomes)
+        {
+            LinkedList<Monome> polynome = new LinkedList<Monome>(monomes);
+        }
+
+        public static Polynome operator +(Polynome arg1, Polynome arg2) => 
+            arg1.Select(x => x).Sum();//O_O WTF?
+        
+        /// <summary>
+        /// Неявное приведение типа <see cref="Monome"/> к типу <see cref="Polynome"/>.
+        /// </summary>
+        /// <param name="value">Объект, приводимый к типу <see cref="Polynome"/>.</param>
+        /// <returns></returns>
+        public static implicit operator Polynome(Monome value) => new Polynome(value);
+
+        //что это такое вообще? 
+        public IEnumerator<Monome> GetEnumerator()
+        {
+            throw new System.NotImplementedException();
+        }
+        //что оно делает?
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        
+        //я вообще не знаю кто писал это в 4 утра О_о
+    }
+}
